@@ -5,7 +5,7 @@ Proponujemy schemat eksperymentów z wykorzystaniem:
 - Hydra - do porządkowania configów
 - WandB - do logowania
 
-Przykład użycia znajduje się w [notatniku](notebooks/example_task.ipynb). Szczegółowy opis schematu [tutaj](docs/experiments_pipeline.md).
+Przykład użycia znajduje się w [notatniku](notebooks/example_task.ipynb). Szczegółowy opis schematu [TUTAJ](docs/experiments_pipeline.md).
 
 ## Gotowe środowisko na kulfonie
 
