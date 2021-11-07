@@ -26,11 +26,11 @@ DataModuł ma zawsze pewną określoną strukturę, zadaną przez `Lightning` i 
 
 ## Module
 
-Drugi główny katalog w tasku to `modules`. Znajdują się w nim `Modules` - Lightningowe opakowania na PyTorch-owe modele. Nałożyliśmy dodatkowe konwencje na `LightningModule` - por. `shared.modules.base.BaseModule`. Jeśli dziedziczymy z tego Modułu, musimy podać konfigurację dla modelu `model_config` oraz słowniki `optimizer_spec` i `scheduler_spec`. Klasa `BaseModule` tworzy na podstawie tych słowników optimizery i schedulery zgodnie z konwencją z `robbytorch`, natomiast `model_config` użytkownik może zdefiniować samodzielnie i wykorzystać go w metodzie `initialize_model` - parametr ten będzie dostępny jako atrybut `self.hparams.model_config` (jest to efekt wywołania `self.save_hyperparameters()` w `__init__` - `self.hparams` zachowuje parametry inicjalizacji Modułu, które zachowują się także w checkpointach zapisywanych przez Lightning). Model przypisujemy do Modułu jako atrybut `self.model`.
+Drugi główny katalog w tasku to `modules`. Znajdują się w nim `Modules` - Lightningowe opakowania na PyTorch-owe modele. Nałożyliśmy dodatkowe konwencje na `LightningModule` - por. `shared.modules.base.BaseModule`. Jeśli dziedziczymy z tego Modułu, musimy podać konfigurację dla modelu `model_config` oraz słowniki `optimizer_spec` i `scheduler_spec`. Klasa `BaseModule` tworzy na podstawie tych słowników optimizery i schedulery zgodnie z konwencją z `robbytorch`, natomiast `model_config` użytkownik może zdefiniować samodzielnie i wykorzystać go w metodzie `initialize_model` - parametr ten będzie dostępny jako atrybut `self.hparams.model_config` (jest to efekt wywołania `self.save_hyperparameters()` w `__init__` - `self.hparams` zachowuje parametry inicjalizacji Modułu, które zachowują się także w checkpointach zapisywanych przez Lightning).
 
 Uwagi:
 - Generalnie Lightning spodziewa się 3 osobnych metod (`training_step`, `validation_step` oraz `test_step`); mogą się one pokrywać, jednak często chcemy liczyć dodatkowe metryki na etapie walidacji albo dodatkowe loss-y na etapie treningu;
-- `self.hparams.model_config` jest typu `DictConfig` - jest to opakowanie na config przekazany za pomocą Hydry (por. niżej). Mamy pełną dowolność w definiowaniu kształtu tego configa, dzięki czemu prototypowanie nowych modeli nie trwa dłużej, niż w jupyterze.
+- `self.hparams.model_config` jest typu `DictConfig` - jest to opakowanie na config przekazany za pomocą Hydry (por. niżej). Mamy pełną dowolność w definiowaniu kształtu tego configa, dzięki czemu prototypowanie nowych modeli nie trwa dłużej, niż w jupyterze; nawet jest prostsze, bo Moduł jest specjalnie wydzielonym do tego miejscem w kodzie.
 
 ## Shared
 

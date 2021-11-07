@@ -27,7 +27,7 @@ class BaseAdvModule(BaseModule):
         loss = module.cross_entropy_criterion(logits, targets)
         return {'loss': loss}
 
-    def compute_advs(self, dataitem, eps=1.25, step_size=0.5, Nsteps=20) -> torch.Tensor:
+    def compute_advs(self, dataitem: Any, eps=1.25, step_size=0.5, Nsteps=20) -> torch.Tensor:
         with torch.enable_grad():
             return robby.input_transforms.PGD(
                 self, dataitem, self.__class__.forward_robby,
