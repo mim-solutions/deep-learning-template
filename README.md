@@ -21,11 +21,11 @@ W środowisku są zainstalowane wszystkie potrzebne paczki; jest ono także dost
 
 # Pozostałe
 
-- [Setup środowiska dla nowego projektu](docs/setup_env.md);
-- [Logowanie wyników](docs/logging.md);
-- [Notebooks](docs/notebooks.md);
-- [Przydatne uprawnienia do repozytorium](docs/set_permissions.md);
-- [Git hooks](docs/git_hooks.md) - jakie git hooki warto mieć;
-- [Code style](docs/code_style.md) - czyli sugerowane typowanie, lintowanie;
-- [SSH](https://docs.google.com/document/d/1bxBiioSs0-n6ZHsaj25bcqrfqhSryWKK8euC9o9J64U/edit#heading=h.5w357sypyx69);
+- [Setup środowiska dla nowego projektu](docs/setup_env.md)
+- [Logowanie wyników](docs/logging.md)
+- [Notebooks](docs/notebooks.md)
+- [Przydatne uprawnienia do repozytorium](docs/set_permissions.md)
+- [Git hooks](docs/git_hooks.md) - jakie git hooki warto mieć
+- [Code style](docs/code_style.md) - czyli sugerowane typowanie, lintowanie
+- [SSH](https://docs.google.com/document/d/1bxBiioSs0-n6ZHsaj25bcqrfqhSryWKK8euC9o9J64U/edit#heading=h.5w357sypyx69)
 
