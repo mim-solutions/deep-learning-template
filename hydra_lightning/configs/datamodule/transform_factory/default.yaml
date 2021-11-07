@@ -1,0 +1,4 @@
+_target_: lib.transform_factories.DefaultTransformFactory
+shape:
+  _target_: lib.utils.to_tuple
+  seq: ${img_shape}

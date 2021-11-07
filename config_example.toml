@@ -1,0 +1,2 @@
+example_data_relative_path = "data/example_dataset"
+GOOGLE_APPLICATION_CREDENTIALS = "/path/to/your/secret/file.json"

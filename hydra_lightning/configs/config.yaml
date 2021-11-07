@@ -1,0 +1,18 @@
+defaults:
+  - _self_
+  - task: example
+  - datamodule: default
+  - module: standard_resnet
+  - trainer: default
+  - logger: wandb
+
+  - experiment: null
+
+img_shape: [224, 224]
+task:
+  run_name: test
+
+seed: null
+gpus: null
+
+epochs: 10

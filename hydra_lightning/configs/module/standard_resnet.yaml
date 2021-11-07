@@ -1,0 +1,10 @@
+defaults:
+  - optimizer_spec: backbone_with_head
+  - scheduler_spec: null
+
+_target_: hydra_lightning.tasks.${task.name}.modules.resnet.ResnetModule
+
+model_config:
+  arch: resnet18
+  eps: 0.
+  num_classes: 10

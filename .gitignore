@@ -1,0 +1,25 @@
+.idea
+__pycache__
+.ipynb_checkpoints
+.~lock*
+
+.vscode
+
+# local config on your machine
+config.toml
+
+# for local files and experiments
+local/*
+notebooks/local/*
+
+# Hydra
+logs/
+outputs/
+
+# Lightning
+checkpoints/
+lightning_logs/
+
+# Logs
+wandb/
+artifacts/

@@ -1,0 +1,1 @@
+The configs in this folder are remaining configs copied from [Lightning-Hydra template repo](https://github.com/ashleve/lightning-hydra-template). Whenever we find something useful it can be modified and moved to the `configs` directory.

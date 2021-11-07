@@ -1,0 +1,15 @@
+defaults:
+  - _self_
+  - transform_factory: default
+  - augmentation_factory: default
+
+_target_: hydra_lightning.tasks.${task.name}.datamodules.default.DefaultDataModule
+
+dataloader_spec:
+  batch_size: 64
+  num_workers: 32
+  prefetch_factor: 2
+  persistent_workers: True
+  pin_memory: False
+
+val_dataloader_spec_override: null

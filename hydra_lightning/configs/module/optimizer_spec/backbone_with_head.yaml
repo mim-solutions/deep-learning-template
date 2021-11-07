@@ -1,0 +1,7 @@
+id: Adam
+params:  # you can access nested submodules
+  .backbone: 
+    lr: 1e-5
+  .head: 
+    lr: 1e-4
+weight_decay: 0.01  # default params for all groups
