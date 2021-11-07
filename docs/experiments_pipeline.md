@@ -75,4 +75,4 @@ Hydra umożliwia konfigurację grid search parametrów za pomocą [sweepów](htt
  
 Przykładowe użycie znajduje się w [notatniku](notebooks/example_task.ipynb). Config ładujemy za pomocą funkcji `train.load_config`, a następnie ładujemy obiekty `trainer, module, datamodule` za pomocą funkcji `train.load_from_config`. Mając te 3 obiekty możemy odpalić trenowanie za pomocą `trainer.fit(model=module, datamodule=datamodule)`. Możemy też debugować lub prototypować nasz model, odwołując się do atrybutu `module.model`.
 
-Parametry configu możemy zmieniać, przekazując do funkcji `train.load_config` parametr `overrides`. Więcej informacji znajduje się w docstringu tej funkcji. Należy w szczególności zwrócić uwagę, że przy nadpisywaniu defaults list używamy slashy zamiast kropek.
+Parametry configu możemy zmieniać, przekazując do funkcji `train.load_config` parametr `overrides`. Więcej informacji znajduje się w [docstringu](https://github.com/mim-solutions/deep-learning-template/blob/02d4fd6abdc76e5f4ebbf49e4c0dffb9faa7f732/hydra_lightning/train.py#L76) tej funkcji. Należy w szczególności zwrócić uwagę, że przy nadpisywaniu defaults list używamy slashy zamiast kropek.
