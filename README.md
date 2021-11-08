@@ -7,6 +7,14 @@ Proponujemy schemat eksperymentów z wykorzystaniem:
 
 Przykład użycia znajduje się w [notatniku](notebooks/example_task.ipynb). Szczegółowy opis schematu [TUTAJ](docs/experiments_pipeline.md).
 
+UWAGA: Trenowanie DDP (użycie wielu GPU) nie działa w notatnikach. Do tego celu można użyć skryptu:
+
+```
+python run.py
+```
+
+Plik `run.py` znajduje się w `.gitignore`, przykładowa zawartość w pliku `_run_example.py`.
+
 ## Gotowe środowisko na kulfonie
 
 Na *Kulfonie* jest postawione środowisko `dl_template` (`/opt/tljh/user/envs/dl_template`), aktywacja przez:

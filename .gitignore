@@ -23,3 +23,6 @@ lightning_logs/
 # Logs
 wandb/
 artifacts/
+
+# For the current experiment
+run.py
