@@ -28,3 +28,21 @@ git diff --cached --name-only --diff-filter=ACM | while IFS='' read -r line || [
   fi
 done
 ```
+
+# TODO
+
+Można spróbować korzystać z paczki [pre-commit](https://pre-commit.com/) i dorzucić tam naszego pre-commit wyżej. Jeśli chcemy korzystać z `black`, możemy wrzucić jako `.pre-commit-config.yaml`:
+
+```
+repos:
+-   repo: https://github.com/ambv/black
+    rev: 21.6b0
+    hooks:
+    - id: black
+      language_version: python3.9
+- repo: https://github.com/nbQA-dev/nbQA
+  rev: 0.13.1
+  hooks:
+    - id: nbqa-black
+      args: [--nbqa-mutate]
+```

@@ -1,6 +1,6 @@
 # Setup środowiska dla nowego projektu
 
-Uwaga: Jeśli korzystamy z [JupyterHub](docs/notebooks.md), wszystkie poniższe komendy należy odpalać z prefiksiem `sudo -E env PATH=${PATH}`.
+Uwaga: Jeśli korzystamy z [JupyterHub](notebooks.md), wszystkie poniższe komendy należy odpalać z prefiksiem `sudo -E env PATH=${PATH}`.
 
 0. Jeśli czujemy się odważni, to można zrobić update condy:
 
@@ -8,7 +8,7 @@ Uwaga: Jeśli korzystamy z [JupyterHub](docs/notebooks.md), wszystkie poniższe 
 conda update -n base conda
 ```
 
-1. Tworzymy nowe środowisko. Instalujemy paczkę `ipykernel`, jeśli korzystamy z JupyterHub, por. [notebooks](docs/notebooks.md).
+1. Tworzymy nowe środowisko. Instalujemy paczkę `ipykernel`, jeśli korzystamy z JupyterHub, por. [notebooks](notebooks.md).
 
 ```
 conda create --name dl_template python=3.8 pip ipykernel
