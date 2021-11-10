@@ -74,7 +74,7 @@ def load_datamodule_from_config(config: DictConfig) -> LightningDataModule:
 
 
 def load_config(overrides: Optional[List] = None,
-                config_path: str = "configs", config_name: str = "config", job_name: str = "app") -> DictConfig:
+                config_path: str = "./configs", config_name: str = "config", job_name: str = "app") -> DictConfig:
     """
     Args:
         overrides: list of hydra command-line overrides, examples:

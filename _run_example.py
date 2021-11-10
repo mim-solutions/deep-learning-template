@@ -2,7 +2,7 @@ from hydra_lightning.train import load_config, config_to_yaml, load_from_config
 import wandb
 
 
-experiment = "experiment=example/standard_resnet_robust_train"
+experiment = "example/standard_resnet_robust_train"
 resume_from_checkpoint = False
 
 epochs = 100 if resume_from_checkpoint else 60

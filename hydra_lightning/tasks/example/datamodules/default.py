@@ -1,6 +1,4 @@
-from torchvision.transforms import Compose
-from typing import Dict, Optional
-from torch.utils.data import Dataset
+from typing import Optional
 
 import robbytorch as robby
 
@@ -31,13 +29,6 @@ class DefaultDataModule(BaseDataModule):
         train_test_split = robby.datasets.split_proportionally(
             metadata, by='label', proportions={"train": 0.7, "val": 0.25, "test": 0.05})
 
-        self.datasets: Dict[str, Dataset] = {}
-        self.datasets['train'] = ExampleDataset(data_root, train_test_split['train'],
-                                                transform=Compose(
-                                                    [self.transform_factory(), self.augmentation_factory()])
-                                                )
-
-        for stage in ['val', 'test']:
-            # We don't use augmentation here.
-            self.datasets[stage] = ExampleDataset(data_root, train_test_split[stage],
-                                                  transform=self.transform_factory())
+        self.datasets = {stage: ExampleDataset(data_root, train_test_split[stage],
+                                               transform=self.get_transform(stage))
+                         for stage in ['train', 'val', 'test']}

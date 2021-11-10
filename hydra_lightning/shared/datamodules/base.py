@@ -4,6 +4,8 @@ from omegaconf import DictConfig
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset
 import torch
+from robbytorch.utils import TensorLike
+from torchvision.transforms import Compose
 import numpy as np
 
 
@@ -28,7 +30,8 @@ class BaseDataModule(LightningDataModule):
         dataloader_spec: DictConfig,
         val_dataloader_spec_override: Optional[Dict] = None,
         transform_factory: Callable[..., Optional[Callable[[np.ndarray], torch.Tensor]]] = lambda: None,
-        augmentation_factory: Callable[..., Optional[Callable[[torch.Tensor], torch.Tensor]]] = lambda: None
+        augmentation_factory: Callable[..., Optional[Callable[[torch.Tensor], torch.Tensor]]] = lambda: None,
+        additional_config: Optional[DictConfig] = None
     ):
         super().__init__()
 
@@ -36,9 +39,16 @@ class BaseDataModule(LightningDataModule):
         self.val_dataloader_spec = {**dataloader_spec, **(val_dataloader_spec_override or {})}
         self.transform_factory = transform_factory
         self.augmentation_factory = augmentation_factory
+        self.additional_config = additional_config
 
         # You should add "train", "val", "test" datasets in setup().
         self.datasets: Dict[str, Dataset] = {}
+
+    def get_transform(self, stage: str) -> Optional[Callable[[TensorLike], torch.Tensor]]:
+        if stage == 'train':
+            return Compose([self.transform_factory(), self.augmentation_factory()])
+        else:
+            return self.transform_factory()
 
     def prepare_data(self):
         """
