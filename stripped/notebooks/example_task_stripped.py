@@ -65,10 +65,10 @@ if resume_from_checkpoint:
     artifact = wandb.use_artifact(wandb_artifact_path, type='model')
     artifact_dir = artifact.download()
 
-    ckpt_path = artifact.file
-    # module2 = module.load_from_checkpoint(artifact.file()) # loading module from checkpoint
+    ckpt_path = artifact.file()
+    # module2 = module.load_from_checkpoint(ckpt_path) # loading module from checkpoint
 
-    trainer.fit(model=module, datamodule=datamodule, ckpt_path=artifact.file())
+    trainer.fit(model=module, datamodule=datamodule, ckpt_path=ckpt_path)
 else:
     trainer.fit(model=module, datamodule=datamodule)
 
