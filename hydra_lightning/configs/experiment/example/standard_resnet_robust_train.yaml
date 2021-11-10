@@ -1,7 +1,7 @@
 # @package _global_
 
 defaults:
-  - example/standard_resnet.yaml
+  - /experiment/example/standard_resnet@_here_
 
 # all parameters below will be merged with parameters from default configurations set above
 # this allows you to overwrite only specified parameters
