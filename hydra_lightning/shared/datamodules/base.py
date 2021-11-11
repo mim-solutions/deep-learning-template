@@ -4,8 +4,9 @@ from omegaconf import DictConfig
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset
 import torch
+from torch.nn import Identity
 from robbytorch.utils import TensorLike
-from torchvision.transforms import Compose
+from torchvision.transforms import Compose, ToTensor
 import numpy as np
 
 
@@ -29,8 +30,8 @@ class BaseDataModule(LightningDataModule):
         self,
         dataloader_spec: DictConfig,
         val_dataloader_spec_override: Optional[Dict] = None,
-        transform_factory: Callable[..., Optional[Callable[[np.ndarray], torch.Tensor]]] = lambda: None,
-        augmentation_factory: Callable[..., Optional[Callable[[torch.Tensor], torch.Tensor]]] = lambda: None,
+        transform_factory: Callable[..., Callable[[np.ndarray], torch.Tensor]] = ToTensor,
+        augmentation_factory: Callable[..., Callable[[torch.Tensor], torch.Tensor]] = Identity,
         additional_config: Optional[DictConfig] = None
     ):
         super().__init__()
