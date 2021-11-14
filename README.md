@@ -13,10 +13,13 @@ UWAGA: Trenowanie DDP (użycie wielu GPU) nie działa w notatnikach. Do tego cel
 python run.py
 ```
 
-Plik `run.py` znajduje się w `.gitignore`, przykładowa zawartość w pliku `_run_example.py`. Skryptu można używać też po prostu zamiast notatnika, chociaż tracimy wtedy interaktywność i łatwy wgląd w architekturę modeli albo dane. Jeśli chcemy odpiąć proces z konkretnej sesji terminala, możemy odpalić:
+Plik `run.py` znajduje się w `.gitignore`, przykładowa zawartość w pliku `_run_example.py`. Skryptu można używać też po prostu zamiast notatnika, chociaż tracimy wtedy interaktywność i łatwy wgląd w architekturę modeli albo dane. Jeśli chcemy odpiąć proces z konkretnej sesji terminala, możemy użyć [screen](https://medium.com/geekculture/run-background-program-with-screen-a7eb301a9284), przykładowo:
 
 ```
-python run.py & disown
+screen -S <nazwa eksperymentu>
+<odpalenie eksperymentu>
+<ctrl + a>
+<d> - detach okna
 ```
 
 ## Gotowe środowisko na kulfonie
