@@ -29,7 +29,7 @@ class BaseModule(LightningModule):
         # Note that this saves just BaseModule#__init__ params;
         # If __init__ is overriden then you need to call self.save_hyperparameters() again
         # For the implementation details check pytorch_lightning.utilities.parsing.get_init_args
-        self.save_hyperparameters()
+        self.save_hyperparameters(logger=False)
         self.initialize_model()
 
     def initialize_model(self):
