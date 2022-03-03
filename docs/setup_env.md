@@ -20,14 +20,12 @@ conda create --name dl_template python=3.8 pip ipykernel
 conda activate dl_template
 ```
 
-3. Instalujemy Pytorch oraz cudatoolkit. Ten punkt niestety zależy od maszyny: sprawdzamy wersję driverów GPU (jeśli w ogóle mamy) poleceniem `nvidia-smi` (np. na kulfonie `470.63.01`), i wybieramy najnowszą wersję cudatoolkit kompatybilną z tymi driverami wg [tej tabelki](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) (np. 11.1).
-Jednocześnie condą instalujemy pytorcha, żeby dostać kompatybilny build. Rekomendujemy dodać wymagania minimalnej wersji oraz tego by pakiet pytorch pochodził z kanału pytorch, jak poniżej (inaczej wszelkie dalsze zmiany w condzie mogą nam niechcący podmienić na niższą wersję lub wersję cpu zamiast cuda).
-Cudzysłów jest konieczny (inaczej bash interpretuje `>` jako przekierowanie do pliku `=1.9`).
+3. Instalujemy Pytorch oraz cudatoolkit. Ten punkt niestety zależy od maszyny: sprawdzamy wersję driverów GPU (jeśli w ogóle mamy) poleceniem `nvidia-smi` (np. na kulfonie `470.63.01`), i wybieramy najnowszą wersję cudatoolkit kompatybilną z tymi driverami wg [tej tabelki](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) (np. 11.1). Jednocześnie condą instalujemy pytorcha, żeby dostać kompatybilny build. Na [stronie](https://pytorch.org/get-started/previous-versions/) znajdujemy wersję torcha kompatybilną z wersją CUDA. Rekomendujemy dodać numer konkretnej wersji oraz tego by pakiet pytorch pochodził z kanału pytorch, jak poniżej (inaczej wszelkie dalsze zmiany w condzie mogą nam niechcący podmienić na niższą/wyższą wersję lub wersję cpu zamiast cuda).
 
 Przykładowa instalacja na szklance (starsze sterowniki)
 
 ```
-conda install cudatoolkit=10.1 "pytorch::pytorch>=1.8" "torchvision>=0.9" -c pytorch -c conda-forge
+conda install cudatoolkit=10.1 "pytorch::pytorch==1.7.1" "torchvision==0.8.2" -c pytorch -c conda-forge
 ```
 
 Instalacja na kulfonie:
