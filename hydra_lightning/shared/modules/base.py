@@ -1,12 +1,14 @@
-from typing import Any, Callable, Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Callable, Optional
 
 from omegaconf import DictConfig, OmegaConf
-if TYPE_CHECKING:
+
+if TYPE_CHECKING and True:
     LightningModule = Any
 else:
     from pytorch_lightning.core.lightning import LightningModule
-from pytorch_lightning.utilities.types import STEP_OUTPUT
 
+import hydra
+from pytorch_lightning.utilities.types import STEP_OUTPUT
 from robbytorch.train import get_optimizer, get_scheduler
 
 
@@ -16,10 +18,12 @@ class BaseModule(LightningModule):
     validation_step: Callable[..., Optional[STEP_OUTPUT]]
     test_step: Callable[..., Optional[STEP_OUTPUT]]
 
-    def __init__(self,
-                 model_config: DictConfig,
-                 optimizer_spec: DictConfig,
-                 scheduler_spec: Optional[DictConfig] = None):
+    def __init__(
+        self,
+        model_config: DictConfig,
+        optimizer_spec: Optional[DictConfig] = None,
+        scheduler_spec: Optional[DictConfig] = None,
+    ):
         super().__init__()
         """The params to this method will be stored in self.hparams"""
 
@@ -45,13 +49,16 @@ class BaseModule(LightningModule):
         See examples here:
             https://pytorch-lightning.readthedocs.io/en/latest/common/lightning_module.html#configure-optimizers
         """
+        assert self.hparams.optimizer_spec, "Module has no optimizer_spec!"
+
         optimizer = get_optimizer(OmegaConf.to_container(self.hparams.optimizer_spec), self)
         scheduler_spec = self.hparams.scheduler_spec
         if not scheduler_spec:
             return optimizer
 
         scheduler = get_scheduler(OmegaConf.to_container(scheduler_spec), optimizer)
-        return {
-            'optimizer': optimizer,
-            'lr_scheduler': scheduler
-        }
+        return {"optimizer": optimizer, "lr_scheduler": scheduler}
+
+    @staticmethod
+    def instantiate(object_config: DictConfig, _recursive_=True):
+        return hydra.utils.instantiate(object_config, _recursive_=_recursive_)

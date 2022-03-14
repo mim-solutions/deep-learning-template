@@ -1,14 +1,9 @@
-from typing import List, Tuple, Optional
+from typing import List, Optional, Tuple
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning import (
-    Callback,
-    LightningDataModule,
-    LightningModule,
-    Trainer,
-    seed_everything,
-)
+from pytorch_lightning import (Callback, LightningDataModule, LightningModule,
+                               Trainer, seed_everything)
 from pytorch_lightning.loggers import LightningLoggerBase
 
 
@@ -35,7 +30,8 @@ def load_from_config(config: DictConfig) -> Tuple[Trainer, LightningModule, Ligh
 def load_module_from_config(config: DictConfig) -> LightningModule:
     # Init lightning module
     print(f"Instantiating module <{config.module._target_}>")
-    module: LightningModule = hydra.utils.instantiate(config.module)
+    # _recursive_=False - never pass complex objects as module parameters (easier model serialization)
+    module: LightningModule = hydra.utils.instantiate(config.module, _recursive_=False)
     return module
 
 
