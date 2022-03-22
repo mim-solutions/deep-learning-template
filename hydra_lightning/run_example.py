@@ -1,6 +1,5 @@
 # example contents of run.py file (should be at the root of the repo and in .gitignore)
 from hydra_lightning.train import load_config, config_to_yaml, load_from_config
-import wandb
 
 
 experiment = "example/standard_resnet_robust_train"
@@ -22,11 +21,14 @@ print(config_to_yaml(cfg))
 trainer, module, datamodule = load_from_config(cfg)
 
 if resume_from_checkpoint:
-    artifact = wandb.use_artifact(wandb_artifact_path, type='model')
-    artifact_dir = artifact.download()
+    import wandb
 
+    api = wandb.Api()
+
+    artifact = api.artifact(wandb_artifact_path, type="model")
+    artifact_dir = artifact.checkout()
     ckpt_path = artifact.file()
-    # module2 = module.load_from_checkpoint(ckpt_path) # loading module from checkpoint
+    module = module.load_from_checkpoint(ckpt_path)
 
     trainer.fit(model=module, datamodule=datamodule, ckpt_path=ckpt_path)
 else:
