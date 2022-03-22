@@ -6,6 +6,11 @@ from pytorch_lightning import (Callback, LightningDataModule, LightningModule,
                                Trainer, seed_everything)
 from pytorch_lightning.loggers import LightningLoggerBase
 
+from lib.wandb_monkey_patches import monkey_patch_wandb
+
+# Always monkey patch wandb during importing this file
+monkey_patch_wandb()
+
 
 def load_from_config(config: DictConfig) -> Tuple[Trainer, LightningModule, LightningDataModule]:
     """
