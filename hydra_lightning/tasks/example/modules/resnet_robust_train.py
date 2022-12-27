@@ -14,9 +14,9 @@ class ResnetRobustTrainModule(BaseAdvModule):
     def initialize_model(self):
         super().initialize_model()
 
-        self.adv_train_accuracy = Accuracy()
-
         cfg: DictConfig = self.hparams.model_config
+        self.adv_train_accuracy = Accuracy(task='multiclass', num_classes=cfg.num_classes)
+
         self.backbone, num_features = get_robust_backbone(cfg.arch, cfg.eps)
         self.head = nn.Linear(num_features, cfg.num_classes)
 
