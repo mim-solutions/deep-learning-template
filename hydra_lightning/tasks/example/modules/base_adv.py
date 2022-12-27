@@ -15,9 +15,10 @@ class BaseAdvModule(BaseModule):
     def initialize_model(self):
         self.cross_entropy_criterion = torch.nn.CrossEntropyLoss()
 
-        self.train_accuracy = Accuracy()
-        self.std_val_accuracy = Accuracy()
-        self.adv_val_accuracy = Accuracy()
+        cfg: DictConfig = self.hparams.model_config
+        self.train_accuracy = Accuracy(task='multiclass', num_classes=cfg.num_classes)
+        self.std_val_accuracy = Accuracy(task='multiclass', num_classes=cfg.num_classes)
+        self.adv_val_accuracy = Accuracy(task='multiclass', num_classes=cfg.num_classes)
 
     # for robby.input_transforms.PGD
     @staticmethod
